@@ -29,4 +29,13 @@ class Funko extends Model
     protected $casts = [
         'active' => 'boolean',
     ];
+
+    /**
+     * Relación con la tabla categorías
+     * @return mixed mixed
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
