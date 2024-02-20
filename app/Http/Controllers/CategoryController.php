@@ -57,8 +57,13 @@ class CategoryController extends Controller
         }
 
         try {
+            $rulesToAdd = '';
+            if (strtolower($request->name) != strtolower($category->name)) {
+                $rulesToAdd = new CategoryNameExists;
+            }
+
             $request->validate([
-                'name' => ['required', 'string', new CategoryNameExists, 'max:255']
+                'name' => ['required', 'string', $rulesToAdd, 'max:255']
             ]);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error al crear la categoría: debe ser única, tener máximo 255 caracteres y no debe estar vacía'], 400);

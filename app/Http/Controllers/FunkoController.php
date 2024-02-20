@@ -72,7 +72,7 @@ class FunkoController extends Controller
             return response()->json(['message' => 'Funko no encontrado'], 404);
         }
 
-        if ($errorResponse = $this->validateFunko($request)) {return $errorResponse;}
+        if ($errorResponse = $this->validateFunko($request, $funko->name)) {return $errorResponse;}
 
         $funko->name = $request->input('name');
         $funko->description = $request->input('description');
@@ -96,16 +96,21 @@ class FunkoController extends Controller
         return response()->json(null, 204);
     }
 
-    public function validateFunko(Request $request, $funkoid = null)
+    public function validateFunko(Request $request, $funkoName = null)
     {
-        $funkoaddid = '';
-        if ($funkoid != null){
-            $funkoaddid = ',' . $funkoid->id;
+        $rulesToAdd = '';
+        if ($funkoName != null){
+            if (strtolower($request->name) != strtolower($funkoName)){
+                $rulesToAdd = new FunkoNameExists;
+            }
+        }else{
+            $rulesToAdd = new FunkoNameExists;
         }
 
         try{
+
             $validator = Validator::make($request->all(), [
-                'name' => ['required', 'string', new FunkoNameExists, 'max:255'],
+                'name' => ['required', 'string', $rulesToAdd, 'max:255'],
                 'description' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0|max:999999.99|regex:/^\d{1,6}(\.\d{1,2})?$/',
                 'stock' => 'required|integer|min:0|max:1000000000',
