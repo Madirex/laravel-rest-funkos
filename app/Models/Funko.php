@@ -12,7 +12,8 @@ class Funko extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image', 'description', 'price', 'stock', 'category', 'active'];
+    public static $IMAGE_DEFAULT = 'default.jpg';
+    protected $fillable = ['name', 'image', 'description', 'price', 'stock', 'category_name', 'active'];
 
     /**
      * Oculta los campos
@@ -37,5 +38,17 @@ class Funko extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Busca por nombre de Funko
+     * @param $query mixed consulta
+     * @param $search string búsqueda
+     * @return mixed mixed
+     */
+    public function scopeSearch($query, $search)
+    {
+        return $query->whereRaw('LOWER(name) LIKE ?', ["%" . strtolower($search) . "%"]);
+        // ->orWhereRaw('LOWER(category_name) LIKE ?', ["%" . strtolower($search) . "%"]);
     }
 }
