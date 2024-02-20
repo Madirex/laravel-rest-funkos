@@ -12,9 +12,9 @@ class CategoryNameNotExists implements Rule
 {
     /**
      * Determine if the validation rule passes.
-     * @param $attribute atributo
-     * @param $value valor
-     * @return mixed mixed
+     * @param $attribute
+     * @param $value
+     * @return mixed
      */
     public function passes($attribute, $value)
     {
