@@ -12,7 +12,7 @@ class Funko extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'author', 'publisher', 'image', 'description', 'price', 'stock', 'category', 'active'];
+    protected $fillable = ['name', 'image', 'description', 'price', 'stock', 'category', 'active'];
 
     /**
      * Oculta los campos
