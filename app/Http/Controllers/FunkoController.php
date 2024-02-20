@@ -7,6 +7,7 @@ use App\Rules\CategoryNameNotExists;
 use App\Rules\FunkoNameExists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class FunkoController
@@ -40,13 +41,6 @@ class FunkoController extends Controller
         }
         return response()->json($funko);
     }
-
-
-   /* public function create() // TODO: do
-    {
-        $categories = Category::all();
-        return view('funkos.create')->with('categories', $categories);
-    }*/
 
     public function store(Request $request)
     {
@@ -91,9 +85,29 @@ class FunkoController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Funko no encontrado'], 404);
         }
+        $this->removeFunkoImage($funko);
         $funko->delete();
-
         return response()->json(null, 204);
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $funko = Funko::find($id);
+            $this->removeFunkoImage($funko);
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $fileToSave = $funko->id . '.' . $extension;
+            $funko->image = $image->storeAs('funkos', $fileToSave, 'public'); // Guardamos en storage/app/public/funkos
+            $funko->save();
+            return response()->json($funko);
+        } catch (Exception $e) {
+            flash('Error al actualizar la imagen del Funko' . $e->getMessage())->error()->important();
+            return response()->json(['message' => 'Error al actualizar la imagen del Funko'], 400);
+        }
     }
 
     public function validateFunko(Request $request, $funkoName = null)
@@ -130,6 +144,18 @@ class FunkoController extends Controller
             return response()->json(['message' => $validator->errors()->first()], 400);
         }else{
             return null;
+        }
+    }
+
+    /**
+     * removeFunkoImage
+     * @param $funko
+     * @return void
+     */
+    public function removeFunkoImage($funko): void
+    {
+        if ($funko->image != Funko::$IMAGE_DEFAULT && Storage::exists('public/' . $funko->image)) {
+            Storage::delete('public/' . $funko->image);
         }
     }
 }

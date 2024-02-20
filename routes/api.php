@@ -27,3 +27,5 @@ Route::prefix('v1')->group(function () {
 Route::prefix('v1')->group(function () {
     Route::apiResource('funkos', FunkoController::class);
 });
+
+Route::post('v1/funkos/{id}/update-image', [FunkoController::class, 'updateImage']);
