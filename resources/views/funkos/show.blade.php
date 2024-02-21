@@ -23,7 +23,7 @@
         <dt class="col-sm-2">Stock:</dt>
         <dd class="col-sm-10">{{ $funko->stock }}</dd>
         <dt class="col-sm-2">Categoría:</dt>
-        <dd class="col-sm-10">{{ $funko->category->name }}</dd>
+        <dd class="col-sm-10">{{ $funko->category }}</dd>
     </dl>
 
 

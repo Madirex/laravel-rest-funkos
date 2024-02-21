@@ -50,6 +50,7 @@
                     <td>
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('funkos.show', $funko->id) }}">Detalles</a>
+                        <?php if(auth()->check() && auth()->user()->isAdmin()): ?>
                         <a class="btn btn-secondary btn-sm"
                            href="{{ route('funkos.edit', $funko->id) }}">Editar</a>
                         <a class="btn btn-info  btn-sm"
@@ -62,6 +63,7 @@
                                     onclick="return confirm('¿Estás seguro de que deseas borrar este Funko?')">Borrar
                             </button>
                         </form>
+                        <?php endif; ?>
                     </td>
                 </tr>
             @endforeach
@@ -77,6 +79,8 @@
         {{ $funkos->links('pagination::bootstrap-4') }}
     </div>
 
+    <?php if(auth()->check() && auth()->user()->isAdmin()): ?>
     <a class="btn btn-success" href={{ route('funkos.create') }}>Nuevo Funko</a>
+    <?php endif; ?>
 
 @endsection
