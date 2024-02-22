@@ -49,18 +49,19 @@
                         @endif
                     </td>
                     <td>
-                        <a class="btn btn-primary btn-sm" style="width:100%"
+                        <a class="btn btn-primary btn-sm" style="width:100px; margin-bottom: 10px"
                            href="{{ route('funkos.show', $funko->id) }}">Detalles</a>
                         <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
-                        <a class="btn btn-secondary btn-sm" style="width:100%"
+                        <a class="btn btn-secondary btn-sm" style="width:100px; margin-bottom: 10px"
                            href="{{ route('funkos.edit', $funko->id) }}">Editar</a>
-                        <a class="btn btn-info  btn-sm" style="width:100%"
+                        <br/>
+                        <a class="btn btn-info  btn-sm" style="width:100px; margin-bottom: 10px"
                            href="{{ route('funkos.editImage', $funko->id) }}">Imagen</a>
                         <form action="{{ route('funkos.destroy', $funko->id) }}" method="POST"
                               style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" style="width:100%"
+                            <button type="submit" class="btn btn-danger btn-sm" style="width:100px; margin-bottom: 10px"
                                     onclick="return confirm('¿Estás seguro de que deseas borrar este Funko?')">Borrar
                             </button>
                         </form>
