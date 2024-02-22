@@ -19,8 +19,8 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Marca</th>
-                <th>Modelo</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Imagen</th>
