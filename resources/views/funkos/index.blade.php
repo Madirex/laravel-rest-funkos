@@ -23,6 +23,7 @@
                 <th>Descripción</th>
                 <th>Precio</th>
                 <th>Stock</th>
+                <th>Categoría</th>
                 <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
