@@ -23,7 +23,7 @@ class FunkoController extends Controller
      */
     public function index(Request $request)
     {
-        $funkos = Funko::search($request->search)->orderBy('id', 'asc')->paginate(4);
+        $funkos = Funko::search($request->search)->orderBy('id', 'asc')->paginate(5);
 
         if ($request->expectsJson()) {
             return response()->json($funkos);
