@@ -32,6 +32,6 @@ class HomeController extends Controller
         }
         Session::put('visits', $visits);
 
-        return view('home');
+        return view('funkos.index');
     }
 }

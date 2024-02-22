@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FunkosTableSeeder::class,
         ]);
+
+        $this->call([
+            AdminUserSeeder::class,
+        ]);
     }
 }
