@@ -13,7 +13,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/') }}">Funkos</a>
                 </li>
-                @if (auth()->check() && auth()->user()->isAdmin())
+                @if (auth()->check() && auth()->user()->hasRole('admin')): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('funkos.create') }}">Nuevo Funko</a>
                     </li>
@@ -23,7 +23,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('categories.index') }}">Categorías</a>
                 </li>
-                @if (auth()->check() && auth()->user()->isAdmin())
+                @if (auth()->check() && auth()->user()->hasRole('admin')): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('categories.create') }}">Nueva Categoría</a>
                     </li>

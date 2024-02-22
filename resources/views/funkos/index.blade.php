@@ -50,7 +50,7 @@
                     <td>
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('funkos.show', $funko->id) }}">Detalles</a>
-                        <?php if(auth()->check() && auth()->user()->isAdmin()): ?>
+                        <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
                         <a class="btn btn-secondary btn-sm"
                            href="{{ route('funkos.edit', $funko->id) }}">Editar</a>
                         <a class="btn btn-info  btn-sm"
@@ -79,7 +79,7 @@
         {{ $funkos->links('pagination::bootstrap-4') }}
     </div>
 
-    <?php if(auth()->check() && auth()->user()->isAdmin()): ?>
+    <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
     <a class="btn btn-success" href={{ route('funkos.create') }}>Nuevo Funko</a>
     <?php endif; ?>
 
