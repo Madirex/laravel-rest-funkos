@@ -2,6 +2,7 @@
 @extends('main')
 @section('title', 'Funkos CRUD')
 @section('content')
+    <br/>
     <h1>Listado de Funkos</h1>
     <form action="{{ route('funkos.index') }}" class="mb-3" method="get">
         @csrf
@@ -57,14 +58,38 @@
                         <br/>
                         <a class="btn btn-info  btn-sm" style="width:100px; margin-bottom: 10px"
                            href="{{ route('funkos.editImage', $funko->id) }}">Imagen</a>
-                        <form action="{{ route('funkos.destroy', $funko->id) }}" method="POST"
-                              style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" style="width:100px; margin-bottom: 10px"
-                                    onclick="return confirm('¿Estás seguro de que deseas borrar este Funko?')">Borrar
-                            </button>
-                        </form>
+
+
+                        <!-- Botón Eliminar con el modal correspondiente -->
+                        <a class="btn btn-danger btn-sm delete-btn" style="width: 100px;" data-toggle="modal" data-target="#confirmDeleteModal{{ $funko->id }}">Eliminar</a>
+
+                        <!-- Modal de Confirmación de eliminación -->
+                        <div class="modal fade" id="confirmDeleteModal{{ $funko->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Estás seguro de que deseas eliminar este elemento?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                                        <!-- Formulario para eliminar el elemento -->
+                                        <form action="{{ route('funkos.destroy', $funko->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -72,7 +97,7 @@
             </tbody>
         </table>
 
-      {{--Si no hay funkos mostramos el mensaje--}}
+      {{--Si no hay Funkos mostramos el mensaje--}}
     @else
         <p class='lead'><em>No se han encontrodo Funkos.</em></p>
     @endif
