@@ -61,7 +61,7 @@
 
 
                         <!-- Botón Eliminar con el modal correspondiente -->
-                        <a class="btn btn-danger btn-sm delete-btn" style="width: 100px;" data-toggle="modal" data-target="#confirmDeleteModal{{ $funko->id }}">Eliminar</a>
+                        <a class="btn btn-danger btn-sm delete-btn" style="width: 100px; margin-bottom: 10px" data-toggle="modal" data-target="#confirmDeleteModal{{ $funko->id }}">Eliminar</a>
 
                         <!-- Modal de Confirmación de eliminación -->
                         <div class="modal fade" id="confirmDeleteModal{{ $funko->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
