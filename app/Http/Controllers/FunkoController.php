@@ -38,7 +38,11 @@ class FunkoController extends Controller
         try {
             $funko = Funko::findOrFail($id);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Funko no encontrado'], 404);
+            if (request()->expectsJson()) {
+                return response()->json(['message' => 'Funko no encontrado'], 404);
+            }
+            flash('Funko no encontrado')->error()->important();
+            return redirect()->back();
         }
 
         if (request()->expectsJson()) {

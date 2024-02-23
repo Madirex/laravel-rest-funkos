@@ -25,9 +25,18 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Categoría no encontrada'], 404);
+            if (request()->expectsJson()) {
+                return response()->json(['message' => 'Categoría no encontrada'], 404);
+            }
+            flash('Categoría no encontrada')->error()->important();
+            return redirect()->back();
         }
-        return response()->json($category);
+
+        if (request()->expectsJson()) {
+            return response()->json($category);
+        }
+
+        return view('categories.show')->with('category', $category);;
     }
 
 
@@ -38,14 +47,24 @@ class CategoryController extends Controller
                 'name' => ['required', 'string', new CategoryNameExists, 'max:255']
             ]);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Error al crear la categoría: debe ser única, tener máximo 255 caracteres y no debe estar vacía'], 400);
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Error al crear la categoría: debe ser única, tener máximo 255 caracteres y no debe estar vacía'], 400);
+            }
+
+            flash('Error al crear la categoría: debe ser única, tener máximo 255 caracteres y no debe estar vacía')->error()->important();
+            return redirect()->back();
         }
         $category = new Category();
         $category->name = $request->input('name');
 
         $category->save();
 
-        return response()->json($category, 201);
+        if ($request->expectsJson()) {
+            return response()->json($category, 201);
+        }
+
+        flash('Categoría creada correctamente')->success();
+        return redirect()->route('categories.index');
     }
 
     public function update(Request $request, string $id)
@@ -53,7 +72,12 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Categoría no encontrada'], 404);
+
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Categoría no encontrada'], 404);
+            }
+            flash('Categoría no encontrada')->error()->important();
+            return redirect()->back();
         }
 
         try {
@@ -66,13 +90,21 @@ class CategoryController extends Controller
                 'name' => ['required', 'string', $rulesToAdd, 'max:255']
             ]);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Error al crear la categoría: debe ser única, tener máximo 255 caracteres y no debe estar vacía'], 400);
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Error al crear la categoría: debe ser única, tener máximo 255 caracteres y no debe estar vacía'], 400);
+            }
+            flash('Error al crear la categoría: debe ser única, tener máximo 255 caracteres y no debe estar vacía')->error()->important();
+            return redirect()->back();
         }
 
         $category->name = $request->input('name');
         $category->save();
 
-        return response()->json($category);
+        if ($request->expectsJson()) {
+            return response()->json($category);
+        }
+        flash('Categoría actualizada correctamente')->success();
+        return redirect()->route('categories.index');
     }
 
     public function destroy(string $id)
@@ -80,10 +112,19 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Categoría no encontrada'], 404);
+            if (request()->expectsJson()) {
+                return response()->json(['message' => 'Categoría no encontrada'], 404);
+            }
+            flash('Categoría no encontrada')->error()->important();
+            return redirect()->back();
         }
         $category->delete();
 
-        return response()->json(null, 204);
+        if (request()->expectsJson()) {
+            return response()->json(null, 204);
+        }
+
+        flash('Categoría eliminada correctamente')->success();
+        return redirect()->route('categories.index');
     }
 }
