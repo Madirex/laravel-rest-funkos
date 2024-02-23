@@ -170,7 +170,7 @@ class FunkoController extends Controller
     {
         $rulesToAdd = '';
         if ($funkoName != null) {
-            if (strtolower($request->name) != strtolower($funkoName)) {
+            if (trim(strtolower($request->name)) != trim(strtolower($funkoName))) {
                 $rulesToAdd = new FunkoNameExists;
             }
         } else {

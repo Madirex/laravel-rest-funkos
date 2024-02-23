@@ -19,6 +19,7 @@ class FunkoNameExists implements Rule
      */
     public function passes($attribute, $value)
     {
+        $value = trim(strtolower($value));
         return !Funko::where('name', 'ILIKE', $value)->exists();
     }
 
