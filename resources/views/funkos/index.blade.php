@@ -99,7 +99,7 @@
 
       {{--Si no hay Funkos mostramos el mensaje--}}
     @else
-        <p class='lead'><em>No se han encontrodo Funkos.</em></p>
+        <p class='lead'><em>No se han encontrado Funkos.</em></p>
     @endif
 
     <div class="pagination-container">

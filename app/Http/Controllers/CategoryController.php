@@ -11,7 +11,8 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $categories = Category::all();
+        $categories = Category::search($request->search)->orderBy('name', 'asc')->paginate(5);
+
 
         if ($request->expectsJson()) {
             return response()->json($categories);
@@ -126,5 +127,21 @@ class CategoryController extends Controller
 
         flash('Categoría eliminada correctamente')->success();
         return redirect()->route('categories.index');
+    }
+
+    /// /// /// /// ///
+    /// PARA VISTAS ///
+    /// /// /// /// ///
+
+    public function create()
+    {
+        return view('categories.create');
+    }
+
+    public function edit($id)
+    {
+        $category = Category::find($id);
+        return view('categories.edit')
+            ->with('category', $category);
     }
 }

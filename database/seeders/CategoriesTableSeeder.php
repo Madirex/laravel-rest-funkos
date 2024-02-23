@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -13,10 +14,10 @@ class CategoriesTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            ['name' => 'Superheros', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Movies', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'TV Series', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Videogames', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 'c5944365-d957-4221-a743-778c507a5397', 'name' => 'Superheros', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => Str::uuid(), 'name' => 'Movies', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => Str::uuid(), 'name' => 'TV Series', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => Str::uuid(), 'name' => 'Videogames', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

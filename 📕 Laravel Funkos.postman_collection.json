@@ -319,9 +319,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}categories",
+							"raw": "{{url}}categories?search=Super",
 							"host": [
 								"{{url}}categories"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Super"
+								}
 							]
 						}
 					},
@@ -333,12 +339,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}categories/1",
+							"raw": "{{url}}categories/c5944365-d957-4221-a743-778c507a5397",
 							"host": [
 								"{{url}}categories"
 							],
 							"path": [
-								"1"
+								"c5944365-d957-4221-a743-778c507a5397"
 							]
 						}
 					},
@@ -404,12 +410,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}categories/1",
+							"raw": "{{url}}categories/c5944365-d957-4221-a743-778c507a5397",
 							"host": [
 								"{{url}}categories"
 							],
 							"path": [
-								"1"
+								"c5944365-d957-4221-a743-778c507a5397"
 							]
 						}
 					},
@@ -421,12 +427,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}categories/1",
+							"raw": "{{url}}categories/c5944365-d957-4221-a743-778c507a5397",
 							"host": [
 								"{{url}}categories"
 							],
 							"path": [
-								"1"
+								"c5944365-d957-4221-a743-778c507a5397"
 							]
 						}
 					},
