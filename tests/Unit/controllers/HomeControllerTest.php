@@ -18,7 +18,7 @@ class HomeControllerTest extends TestCase
     {
         Session::put('visits', 3);
         $controller = new HomeController();
-        $response = $controller->index();
+        $controller->index();
         $this->assertEquals(4, Session::get('visits'));
     }
 }
