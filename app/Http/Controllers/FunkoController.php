@@ -54,7 +54,7 @@ class FunkoController extends Controller
             if ($request->expectsJson()) {
                 return $errorResponse;
             }
-            flash('Error al crear el Funko' . $errorResponse)->error()->important();
+            flash('Error al crear el Funko: ' . $errorResponse)->error()->important();
             return redirect()->back();
         }
         $funko = new Funko();
@@ -91,7 +91,7 @@ class FunkoController extends Controller
             if ($request->expectsJson()) {
                 return $errorResponse;
             }
-            flash('Error al actualizar el Funko' . $errorResponse)->error()->important();
+            flash('Error al actualizar el Funko: ' . $errorResponse)->error()->important();
             return redirect()->back();
         }
 
@@ -186,7 +186,8 @@ class FunkoController extends Controller
 
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
-                return response()->json(['errors' => $errors], 400);
+                $errorsString = implode(' ', $errors);
+                return $errorsString;
             }
         } catch (\Brick\Math\Exception\NumberFormatException $e) {
             return response()->json(['message' => 'Error al procesar una propiedad por no tener un número válido. Evita que exceda del tamaño límite.'], 400);

@@ -17,7 +17,6 @@ class CategoriesTableSeeder extends Seeder
             ['name' => 'Movies', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'TV Series', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Videogames', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Animals', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

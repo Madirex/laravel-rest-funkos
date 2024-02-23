@@ -44,8 +44,8 @@
             <select class="form-control" id="category_name" name="category_name" required>
                 <option>Seleccione una categoría</option>
                 @foreach($categories as $category)
-                    <option @if($funko->category->id == $category->id) selected
-                            @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option @if($funko->category == $category->name) selected
+                            @endif value="{{ $category->name }}">{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
