@@ -24,3 +24,8 @@ Para eliminar el contenedor, junto con sus datos, puedes ejecutar el siguiente c
     docker-compose down -v --remove-orphans
 
 Ambos comandos comentados pueden ser utilizados para iniciar y detener el contenedor de Docker. Es importante entender que cada vez que ejecutes el comando de docker-compose down -v  --remove-orphans se van a eliminar todos los datos de la base de datos. Solo se debería de utilizar en modo desarrollo, nunca en modo producción. ⚠️
+
+## Postman
+🚀 Archivo de colección de pruebas Postman en este repositorio:
+    
+    📕 Laravel Funkos.postman_collection.json
