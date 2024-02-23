@@ -16,16 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+if (env('DEVELOP_MODE') == 'true') {
+    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::prefix('v1')->group(function () {
-    Route::apiResource('categories', CategoryController::class);
-});
+    Route::prefix('v1')->group(function () {
+        Route::apiResource('categories', CategoryController::class);
+    });
 
-Route::prefix('v1')->group(function () {
-    Route::apiResource('funkos', FunkoController::class);
-});
+    Route::prefix('v1')->group(function () {
+        Route::apiResource('funkos', FunkoController::class);
+    });
 
-Route::post('v1/funkos/{id}/update-image', [FunkoController::class, 'updateImage']);
+    Route::post('v1/funkos/{id}/update-image', [FunkoController::class, 'updateImage']);
+
+}
