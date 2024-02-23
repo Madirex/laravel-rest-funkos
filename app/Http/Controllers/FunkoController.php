@@ -32,7 +32,11 @@ class FunkoController extends Controller
         return view('funkos.index')->with('funkos', $funkos);
     }
 
-
+    /**
+     * show
+     * @param $id id
+     * @return mixed view or json
+     */
     public function show($id)
     {
         try {
@@ -52,6 +56,11 @@ class FunkoController extends Controller
         return view('funkos.show')->with('funko', $funko);
     }
 
+    /**
+     * store
+     * @param Request $request request
+     * @return string | mixed
+     */
     public function store(Request $request)
     {
         if ($errorResponse = $this->validateFunko($request)) {
@@ -79,6 +88,12 @@ class FunkoController extends Controller
         return redirect()->route('funkos.index');
     }
 
+    /**
+     * update
+     * @param Request $request request
+     * @param string $id id
+     * @return string | mixed
+     */
     public function update(Request $request, string $id)
     {
         try {
@@ -114,6 +129,11 @@ class FunkoController extends Controller
         return redirect()->route('funkos.index');
     }
 
+    /**
+     * destroy
+     * @param string $id id
+     * @return mixed view
+     */
     public function destroy(string $id)
     {
         try {
@@ -137,6 +157,12 @@ class FunkoController extends Controller
         return redirect()->route('funkos.index');
     }
 
+    /**
+     * updateImage
+     * @param Request $request request
+     * @param $id id
+     * @return mixed view
+     */
     public function updateImage(Request $request, $id)
     {
         try {
@@ -166,6 +192,12 @@ class FunkoController extends Controller
         }
     }
 
+    /**
+     * validateFunko
+     * @param Request $request request
+     * @param $funkoName string|null
+     * @return string|null error message
+     */
     public function validateFunko(Request $request, $funkoName = null)
     {
         $rulesToAdd = '';
@@ -206,8 +238,8 @@ class FunkoController extends Controller
 
     /**
      * removeFunkoImage
-     * @param $funko
-     * @return void
+     * @param $funko Funko
+     * @return void remove image
      */
     public function removeFunkoImage($funko): void
     {
@@ -220,11 +252,21 @@ class FunkoController extends Controller
     /// PARA VISTAS ///
     /// /// /// /// ///
 
+    /**
+     * create
+     * @return mixed view
+     */
     public function create()
     {
         $categories = Category::all();
         return view('funkos.create')->with('categories', $categories);
     }
+
+    /**
+     * edit
+     * @param $id id
+     * @return mixed view
+     */
     public function edit($id)
     {
         $funko = Funko::find($id);
@@ -233,6 +275,12 @@ class FunkoController extends Controller
             ->with('funko', $funko)
             ->with('categories', $categories);
     }
+
+    /**
+     * editImage
+     * @param $id id
+     * @return mixed view
+     */
     public function editImage($id)
     {
         $funko = Funko::find($id);

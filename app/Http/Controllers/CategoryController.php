@@ -7,9 +7,17 @@ use App\Models\Funko;
 use App\Rules\CategoryNameExists;
 use Illuminate\Http\Request;
 
+/**
+ * Class CategoryController
+ */
 class CategoryController extends Controller
 {
 
+    /**
+     * index
+     * @param Request $request request
+     * @return mixed view or json
+     */
     public function index(Request $request)
     {
         $categories = Category::search($request->search)->orderBy('name', 'asc')->paginate(5);
@@ -22,6 +30,11 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
+    /**
+     * show
+     * @param string $id id
+     * @return mixed view or json
+     */
     public function show(string $id)
     {
         try {
@@ -41,7 +54,11 @@ class CategoryController extends Controller
         return view('categories.show')->with('category', $category);;
     }
 
-
+    /**
+     * store
+     * @param Request $request request
+     * @return mixed view
+     */
     public function store(Request $request)
     {
         try {
@@ -69,6 +86,12 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+    /**
+     * update
+     * @param Request $request request
+     * @param string $id id
+     * @return mixed view
+     */
     public function update(Request $request, string $id)
     {
         try {
@@ -119,6 +142,11 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+    /**
+     * destroy
+     * @param string $id id
+     * @return mixed view
+     */
     public function destroy(string $id)
     {
         try {
@@ -144,11 +172,20 @@ class CategoryController extends Controller
     /// PARA VISTAS ///
     /// /// /// /// ///
 
+    /**
+     * create
+     * @return mixed view
+     */
     public function create()
     {
         return view('categories.create');
     }
 
+    /**
+     * edit
+     * @param $id id
+     * @return mixed view
+     */
     public function edit($id)
     {
         $category = Category::find($id);
