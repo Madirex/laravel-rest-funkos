@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Funko;
 use App\Rules\CategoryNameExists;
 use Illuminate\Http\Request;
 
@@ -98,7 +99,17 @@ class CategoryController extends Controller
             return redirect()->back();
         }
 
+        // Obtener todos los funkos relacionados con la categoría
+        $funkos = Funko::where('category_name', $category->name)->get();
+
         $category->name = $request->input('name');
+
+        // Actualizar el nombre de la categoría en los funkos relacionados
+        foreach ($funkos as $funko) {
+            $funko->category_name = $category->name;
+            $funko->save();
+        }
+
         $category->save();
 
         if ($request->expectsJson()) {
