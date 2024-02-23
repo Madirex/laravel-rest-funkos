@@ -12,7 +12,7 @@ class Funko extends Model
 {
     use HasFactory;
 
-    public static $IMAGE_DEFAULT = 'default.jpg';
+    public static $IMAGE_DEFAULT = 'images/funkos.bmp';
     protected $fillable = ['name', 'image', 'description', 'price', 'stock', 'category_name', 'active'];
 
     /**
