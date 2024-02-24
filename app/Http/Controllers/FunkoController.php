@@ -70,14 +70,7 @@ class FunkoController extends Controller
             flash('Error al crear el Funko: ' . $errorResponse)->error()->important();
             return redirect()->back();
         }
-        $funko = new Funko();
-        $funko->name = $request->input('name');
-        $funko->description = $request->input('description');
-        $funko->price = $request->input('price');
-        $funko->stock = $request->input('stock');
-        $funko->category_name = $request->input('category_name');
-        $funko->active = true;
-        $funko->image = Funko::$IMAGE_DEFAULT;
+        $funko = $this->getFunkoStore($request);
         $funko->save();
 
         //comprobar si espera json
@@ -285,5 +278,23 @@ class FunkoController extends Controller
     {
         $funko = Funko::find($id);
         return view('funkos.image')->with('funko', $funko);
+    }
+
+    /**
+     * getFunkoStore
+     * @param Request $request
+     * @return Funko Funko
+     */
+    public function getFunkoStore(Request $request): Funko
+    {
+        $funko = new Funko();
+        $funko->name = $request->input('name');
+        $funko->description = $request->input('description');
+        $funko->price = $request->input('price');
+        $funko->stock = $request->input('stock');
+        $funko->category_name = $request->input('category_name');
+        $funko->active = true;
+        $funko->image = Funko::$IMAGE_DEFAULT;
+        return $funko;
     }
 }

@@ -4,7 +4,6 @@ use App\Http\Controllers\CategoryController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Tests\TestCase;
-use Mockery;
 
 class CategoryControllerTest extends TestCase
 {
@@ -22,6 +21,7 @@ class CategoryControllerTest extends TestCase
         $response = $controller->index(new Request());
 
         $this->assertInstanceOf(\Illuminate\View\View::class, $response);
+        $this->assertArrayHasKey('categories', $response->getData());
     }
 
     public function testShow()
@@ -31,7 +31,9 @@ class CategoryControllerTest extends TestCase
             ->andReturn(new Category());
         $controller = new CategoryController();
         $response = $controller->show('test-id');
+
         $this->assertInstanceOf(\Illuminate\View\View::class, $response);
+        $this->assertArrayHasKey('category', $response->getData());
     }
 
     public function testStore()
@@ -44,6 +46,7 @@ class CategoryControllerTest extends TestCase
         $response = $controller->store(new Request(['name' => 'test-name']));
 
         $this->assertInstanceOf(\Illuminate\Http\RedirectResponse::class, $response);
+        $this->assertEquals('', $response->getSession()->get('success'), 'Success message should be empty');
     }
 
     public function testUpdate()
@@ -72,6 +75,7 @@ class CategoryControllerTest extends TestCase
         $response = $controller->destroy('test-id');
 
         $this->assertInstanceOf(\Illuminate\Http\RedirectResponse::class, $response);
+        $this->assertEquals(route('categories.index'), $response->headers->get('Location'));
     }
 
     public function testCreate()
@@ -91,6 +95,7 @@ class CategoryControllerTest extends TestCase
         $response = $controller->edit('test-id');
 
         $this->assertInstanceOf(\Illuminate\View\View::class, $response);
+        $this->assertArrayHasKey('category', $response->getData());
     }
 
 
