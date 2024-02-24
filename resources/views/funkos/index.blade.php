@@ -25,9 +25,9 @@
                         <img class="funko-image" src="{{ $funko->image != Funko::$IMAGE_DEFAULT ? asset('storage/' . $funko->image) : Funko::$IMAGE_DEFAULT }}" alt="Imagen del Funko" onerror="this.onerror=null; this.src='http://localhost/images/funkos.bmp';">
                         <h2 class="funko-name">{{ $funko->name }}</h2>
                         <p class="funko-description">{{ $funko->description }}</p>
-                        <p class="funko-price">{{ $funko->price }}</p>
-                        <p class="funko-stock">{{ $funko->stock }}</p>
-                        <p class="funko-category">{{ $funko->category_name }}</p>
+                        <p class="funko-price"><i class="fas fa-tag"></i> {{ $funko->price }}</p>
+                        <p class="funko-stock"><i class="fas fa-box-open"></i> {{ $funko->stock }}</p>
+                        <p class="funko-category">Categoría: {{ $funko->category_name }}</p>
                         <div class="funko-actions">
                             <a class="btn btn-primary btn-sm" href="{{ route('funkos.show', $funko->id) }}"><i class="fas fa-info-circle"></i></a>
                             @if(auth()->check() && auth()->user()->hasRole('admin'))
@@ -76,7 +76,7 @@
     </div>
 
     @if(auth()->check() && auth()->user()->hasRole('admin'))
-        <a class="btn btn-success" href={{ route('funkos.create') }}><i class="fas fa-plus"></i></a>
+        <a class="btn btn-success" href={{ route('funkos.create') }}><i class="fas fa-plus"> Crear Funko</i></a>
     @endif
 
 @endsection

@@ -82,7 +82,7 @@
 }
 
 .funko-card {
-    width: 300px;
+    width: 20%;
     margin: 20px;
     padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -149,6 +149,7 @@ div.nav-username{
 
 .funko-link:hover {
     text-decoration: none;
+    color: inherit;
 }
 
 .funko-card {
