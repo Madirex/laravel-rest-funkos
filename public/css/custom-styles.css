@@ -1,5 +1,9 @@
 /* custom-styles.css */
 
+body{
+    background-color: #ededed;
+}
+
 .custom-container {
     max-width: 600px;
     margin: 0 auto;
@@ -88,6 +92,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px;
+    background-color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -191,6 +196,7 @@ div.nav-username{
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: #fff;
 }
 
 .category-info {
