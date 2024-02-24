@@ -2,16 +2,19 @@
 @extends('main')
 @section('title', 'Detalles de la categoría')
 @section('content')
+    <br/>
     <h1>Detalles de la categoría</h1>
-    <dl class="row">
-        <dt class="col-sm-2">Nombre:</dt>
-        <dd class="col-sm-10">{{ $category->name }}</dd>
-        <dt class="col-sm-2">Fecha de creación:</dt>
-        <dd class="col-sm-10">{{ $category->created_at }}</dd>
-        <dt class="col-sm-2">Fecha de actualización:</dt>
-        <dd class="col-sm-10">{{ $category->updated_at }}</dd>
-    </dl>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-tag"></i> {{ $category->name }}</h5>
+            <br/>
+            <p class="card-text"><i class="fas fa-calendar-alt"></i> Fecha de creación: {{ $category->created_at }}</p>
+            <p class="card-text"><i class="fas fa-sync-alt"></i> Fecha de actualización: {{ $category->updated_at }}</p>
+        </div>
+    </div>
 
-    <a class="btn btn-primary" href="{{ route('categories.index') }}">Volver</a>
+    <br/>
+
+    <a class="btn btn-primary" href="{{ route('categories.index') }}"><i class="fas fa-arrow-left"></i> Volver</a>
 
 @endsection

@@ -3,30 +3,25 @@
 @section('title', 'Detalles Funko')
 @section('content')
     <h1>Detalles del Funko</h1>
-    <dl class="row">
-        <dt class="col-sm-2">ID:</dt>
-        <dd class="col-sm-10">{{ $funko->id }}</dd>
-        <dt class="col-sm-2">Nombre:</dt>
-        <dd class="col-sm-10">{{ $funko->name }}</dd>
-        <dt class="col-sm-2">Descripción:</dt>
-        <dd class="col-sm-10">{{ $funko->description }}</dd>
-        <dt class="col-sm-2">Precio:</dt>
-        <dd class="col-sm-10">{{ $funko->price }}</dd>
-        <dt class="col-sm-2">Imagen:</dt>
-        <dd class="col-sm-10">
-            @if($funko->image != Funko::$IMAGE_DEFAULT)
-                <img alt="Imagen del Funko" class="img-fluid" src="{{ asset('storage/' . $funko->image) }}">
-            @else
-                <img alt="Imagen por defecto" class="img-fluid" src="{{ Funko::$IMAGE_DEFAULT }}">
-            @endif
-        </dd>
-        <dt class="col-sm-2">Stock:</dt>
-        <dd class="col-sm-10">{{ $funko->stock }}</dd>
-        <dt class="col-sm-2">Categoría:</dt>
-        <dd class="col-sm-10">{{ $funko->category }}</dd>
-    </dl>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-tag"></i> {{ $funko->name }}</h5>
+            <p class="card-text"><i class="fas fa-info-circle"></i> Descripción: {{ $funko->description }}</p>
+            <p class="card-text"><i class="fas fa-dollar-sign"></i> Precio: {{ $funko->price }}</p>
+            <p class="card-text"><i class="fas fa-image"></i> Imagen:
+                @if($funko->image != Funko::$IMAGE_DEFAULT)
+                    <img alt="Imagen del Funko" class="img-fluid funko-image" src="{{ asset('storage/' . $funko->image) }}">
+                @else
+                    <img alt="Imagen por defecto" class="img-fluid funko-image" src="{{ Funko::$IMAGE_DEFAULT }}">
+                @endif
+            </p>
+            <p class="card-text"><i class="fas fa-layer-group"></i> Stock: {{ $funko->stock }}</p>
+            <p class="card-text"><i class="fas fa-folder-open"></i> Categoría: {{ $funko->category_name }}</p>
+        </div>
+    </div>
 
+    <br/>
 
-    <a class="btn btn-primary" href="{{ route('funkos.index') }}">Volver</a>
+    <a class="btn btn-primary" href="{{ route('funkos.index') }}"><i class="fas fa-arrow-left"></i> Volver</a>
 
 @endsection

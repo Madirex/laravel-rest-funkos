@@ -76,7 +76,7 @@
     </div>
 
     @if(auth()->check() && auth()->user()->hasRole('admin'))
-        <a class="btn btn-success" href={{ route('funkos.create') }}><i class="fas fa-plus"> Crear Funko</i></a>
+        <a class="btn btn-success" href={{ route('funkos.create') }}><i class="fas fa-plus"></i> Crear Funko</a>
     @endif
 
 @endsection
