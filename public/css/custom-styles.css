@@ -156,6 +156,33 @@ div.nav-username{
     color: #333;
 }
 
+/* categories */
+.category-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.category-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.category-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-actions {
+    display: flex;
+    gap: 10px;
+}
+
 
 /* banners */
 .error-banner {

@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::search($request->search)->orderBy('name', 'asc')->paginate(6);
+        $categories = Category::search($request->search)->orderBy('name', 'asc')->paginate(8);
 
 
         if ($request->expectsJson()) {
