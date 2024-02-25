@@ -1,6 +1,14 @@
 # laravel-rest-funkos
  API REST de NULLERS BOOKS, una tienda de libros en línea que te permite realizar diversas operaciones, como consultar libros, gestionar usuarios, administrar tiendas y realizar pedidos. API diseñada para ser segura, eficiente y escalable, proporcionando una interfaz robusta para interactuar con la plataforma de comercio de libros 📚 
 
+<p align="center">
+  <img src="images/1.png" width="400px"/>
+</p>
+
+<p align="center">
+  <img src="images/2.png" width="400px"/>
+</p>
+
 # ✏️⚠️ Instrucciones Importantes
 ## Configuración
 1. Cambiar el nombre del archivo .env.example a .env
