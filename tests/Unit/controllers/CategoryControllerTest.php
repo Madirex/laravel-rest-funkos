@@ -15,13 +15,20 @@ class CategoryControllerTest extends TestCase
             ->shouldReceive('orderBy')
             ->andReturnSelf()
             ->shouldReceive('paginate')
-            ->andReturn(collect([new Category()]));
-
+            ->andReturn(new \Illuminate\Pagination\LengthAwarePaginator(
+                [new Category(['name' => 'Example Name'])],
+                1,
+                1
+            ));
         $controller = new CategoryController();
         $response = $controller->index(new Request());
+        $paginator = $response->getData()['categories'];
+        $categories = $paginator->items();
+        $firstCategoryName = $categories[0];
 
         $this->assertInstanceOf(\Illuminate\View\View::class, $response);
         $this->assertArrayHasKey('categories', $response->getData());
+        $this->assertNotNull($firstCategoryName);
     }
 
     public function testShow()
