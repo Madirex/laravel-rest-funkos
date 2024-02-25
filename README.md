@@ -15,7 +15,7 @@
 2. DEVELOP_MODE=true para activar el modo de desarrollo, DEVELOP_MODE=false para desactivar el modo de desarrollo. Esto es importante, pues en modo desarrollo la API está activada para poder ser testeada con Postman, pero en modo producción, la API está desactivada para evitar que se realicen cambios en la base de datos. Es importante que en modo de producción se deshabilite, o cualquiera podrá hacer cambios.
 
 ## Instrucciones
-📁❗ Primero deberás de crear el enlace a storage:
+📁❗ Primero deberás de crear el enlace a storage (EN EL CONTENEDOR DE DOCKER laravel-rest-funkos-laravel.test-1):
 
     php artisan storage:link
 
