@@ -146,7 +146,7 @@ class FunkoController extends Controller
             return response()->json(null, 204);
         }
 
-        flash('Funko ' . $funko->name . '  eliminado con éxito.')->error()->important();
+        flash('Funko ' . $funko->name . '  eliminado con éxito.')->success()->important();
         return redirect()->route('funkos.index');
     }
 
