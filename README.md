@@ -15,9 +15,8 @@
 2. DEVELOP_MODE=true para activar el modo de desarrollo, DEVELOP_MODE=false para desactivar el modo de desarrollo. Esto es importante, pues en modo desarrollo la API está activada para poder ser testeada con Postman, pero en modo producción, la API está desactivada para evitar que se realicen cambios en la base de datos. Es importante que en modo de producción se deshabilite, o cualquiera podrá hacer cambios.
 
 ## Instrucciones
-📁❗ Primero deberás de crear el enlace a storage (EN EL CONTENEDOR DE DOCKER laravel-rest-funkos-laravel.test-1):
-
-    php artisan storage:link
+Para empezar, debes de ejecutar este comando para levantar sail
+    sudo ./vendor/bin/sail up
 
 1. Ejecutar Docker: docker-compose up -d
 2. Ejecutar las migraciones: docker exec laravel-rest-funkos-laravel.test-1 php artisan migrate
@@ -34,6 +33,10 @@ Solo deberás cambiar el CONTAINER_NAME por el nombre del contenedor que te gene
 Para eliminar el contenedor, junto con sus datos, puedes ejecutar el siguiente comando:
 
     docker-compose down -v --remove-orphans
+
+📁❗ Ahora, para que funcione el storage deberás de crear el enlace a storage (EN EL CONTENEDOR DE DOCKER laravel-rest-funkos-laravel.test-1) Si no lo ejecutas en el contenedor, no se creará correctamente el enlace simbólico:
+
+    php artisan storage:link
 
 Ambos comandos comentados pueden ser utilizados para iniciar y detener el contenedor de Docker. Es importante entender que cada vez que ejecutes el comando de docker-compose down -v  --remove-orphans se van a eliminar todos los datos de la base de datos. Solo se debería de utilizar en modo desarrollo, nunca en modo producción. ⚠️
 
