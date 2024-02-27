@@ -26,7 +26,7 @@ Para empezar, debes de ejecutar este comando para levantar sail
 Deberás reemplazar el nombre del contenedor de Docker laravel-rest-funkos-laravel.test-1 por el nombre que haya asignado Docker.
 Si lo prefieres, puedes realizar todos los pasos anteriores en un solo comando:
 
-    CONTAINER_NAME="laravel-rest-funkos-laravel.test-1" && docker-compose up -d && sleep 1 && while ! docker exec $CONTAINER_NAME php artisan migrate; do sleep 2; done && docker exec $CONTAINER_NAME php artisan db:seed && echo "Migración exitosa. El servicio está iniciado." && npm run dev
+    CONTAINER_NAME="laravel-rest-funkos-laravel.test-1" && sudo docker-compose up -d && sleep 1 && while ! sudo docker exec $CONTAINER_NAME php artisan migrate; do sleep 2; done && sudo docker exec $CONTAINER_NAME php artisan db:seed && echo "Migración exitosa. El servicio está iniciado." && npm run dev
 
 Solo deberás cambiar el CONTAINER_NAME por el nombre del contenedor que te genera Docker y ya podrás ejecutar de una pasada todos los comandos anteriores.
 
